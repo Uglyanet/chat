@@ -4,7 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-В проекте сначала подгружаем все пакеты
+В проекте сначала подгружаем все пакет
 
 ### `npm install`
 
