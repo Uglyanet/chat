@@ -5,6 +5,8 @@ import golubfront from '../../icons/golubfront.gif';
 import securityIcon from '../../icons/security.png';
 import Context from '../../Context';
 
+import {charset} from '../../constants/other'
+
 
 import '../../scss/style.scss';
 const Join = () => {
@@ -14,7 +16,6 @@ const Join = () => {
 
     const generatePassword = () => {
         var length = 32,
-            charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789~!@$%^*()_+",
             retVal = "";
         for (var i = 0, n = charset.length; i < length; ++i) {
             retVal += charset.charAt(Math.floor(Math.random() * n));
@@ -29,11 +30,16 @@ const Join = () => {
         audio.autoplay = true;
     }
 
+    const handleGeneratePrivateRoom = () => {
+        generatePassword();
+        setSecret(true);
+    }
+
 
     return (
         <div className="joinOuterContainer">
             <div className="joinInnerContainer">
-                <img src={golubfront} onClick={() => soundMain()} alt="pig" />
+                <img src={golubfront} onClick={soundMain} alt="pig" />
                 <h1 className="heading">Join</h1>
                 <div>
                     <input placeholder="Name" className="joinInput" type="text" onChange={(event) => setName(event.target.value)} />
@@ -44,10 +50,18 @@ const Join = () => {
                 <Link onClick={event => (!name || !room) ? event.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
                     <button className="button mt-20" type="submit">Sign In</button>
                 </Link>
-                <button className="button mt-20" type="submit" onClick={() => {
-                    generatePassword();
-                    setSecret(true);
-                }} >Create privat key<img className="securityIcon" src={securityIcon} alt="security icon" /></button>
+                <button
+                    className="button mt-20"
+                    type="submit"
+                    onClick={handleGeneratePrivateRoom}
+                >
+                    Create privat key
+                    <img
+                        className="securityIcon"
+                        src={securityIcon}
+                        alt="security icon"
+                    />
+                </button>
             </div>
         </div>
     )

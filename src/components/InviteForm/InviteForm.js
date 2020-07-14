@@ -3,12 +3,34 @@ import React from 'react';
 import '../../scss/style.scss';
 
 const InviteForm = ({ friendName, setFriendName, setInviteStatus }) => {
+
+    const handleSetFriendName = (e) => {
+        setFriendName(e.target.value)
+    }
+    
+    const handleButtonClick = (e) => {
+        if (friendName) {
+            setInviteStatus('3')
+        } else {
+            e.preventDefault()
+        }
+    }
+
     return (
         <div>
             <div>
-                <input placeholder="Friend Name" className="friendInput" type="text" onChange={(event) => setFriendName(event.target.value)} />
+                <input
+                    placeholder="Friend Name"
+                    className="friendInput"
+                    type="text"
+                    onChange={handleSetFriendName} />
             </div>
-            <button className="button" onClick={event => !friendName ? event.preventDefault() : setInviteStatus('3')}>Oh nice</button>
+            <button
+                className="button"
+                onClick={handleButtonClick}
+            >
+                Oh nice
+            </button>
         </div>
     )
 };

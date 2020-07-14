@@ -9,6 +9,11 @@ import '../../scss/style.scss';
 const TextContainer = ({ users, room }) => {
   const [inviteStatus, setInviteStatus] = useState('1');
   const [friendName, setFriendName] = useState('');
+
+  const handleSetInviteStatus = () => {
+    setInviteStatus('2')
+  }
+
   return (
     <div className="textContainer">
       {
@@ -31,7 +36,7 @@ const TextContainer = ({ users, room }) => {
           : null
       }
       <div>
-        {inviteStatus === '1' && <button className="button" onClick={() => { setInviteStatus('2') }}>Invite friend to chat</button>}
+        {inviteStatus === '1' && <button className="button" onClick={handleSetInviteStatus}>Invite friend to chat</button>}
         {inviteStatus === '2' &&
           <InviteForm friendName={friendName}
             setFriendName={setFriendName}

@@ -9,6 +9,7 @@ import Input from '../Input/Input';
 
 import '../../scss/style.scss';
 import soundFile from '../../audio/sendfly.mp3';
+import { SERVER_ENDPOINT } from '../../constants/other'
 
 let socket;
 
@@ -18,13 +19,12 @@ const Chat = ({ location }) => {
   const [users, setUsers] = useState('');
   const [message, setMessage] = useState('');
   const [messages, setMessages] = useState([]);
-  const ENDPOINT = 'http://ec2-18-185-120-89.eu-central-1.compute.amazonaws.com:5000/';
 
 
   useEffect(() => {
     const { name, room } = queryString.parse(location.search);
 
-    socket = io(ENDPOINT);
+    socket = io(SERVER_ENDPOINT);
 
     setRoom(room);
     setName(name);
@@ -34,7 +34,7 @@ const Chat = ({ location }) => {
         alert(error);
       }
     });
-  }, [ENDPOINT, location.search]);
+  }, [location.search]);
 
   useEffect(() => {
     socket.on('message', (message) => {
