@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import { Link } from 'react-router-dom';
 
 import '../../scss/style.scss';
 
-const NotFound = () => {
-    return (
-        <div className="joinOuterContainer">
+class NotFound extends PureComponent{
+    render(){
+        return(
+            <div className="joinOuterContainer">
             <div className="joinInnerContainer">
                 <p className="heading">404 Page not found</p>
                 <Link to="/">
@@ -13,7 +14,8 @@ const NotFound = () => {
                 </Link>
             </div>
         </div>
-    )
-};
+        )
+    }
+}
 
 export default NotFound;

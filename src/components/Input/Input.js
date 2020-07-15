@@ -1,29 +1,35 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import '../../scss/style.scss';
 
-const Input = ({ setMessage, sendMessage, message }) => {
-
-    const handleSendMessage=(e)=>{
-        sendMessage(e)
+class Input extends PureComponent {
+    handleSendMessage = () => {
+        this.props.sendMessage()
     }
-    
-    return (
-        <form className="form">
-            <input
-                className="input"
-                type="text"
-                placeholder="Type a message..."
-                value={message}
-                onChange={({ target: { value } }) => setMessage(value)}
-                onKeyPress={event => event.key === 'Enter' ?  sendMessage(event): null}
-            />
-            <button 
-            className="sendButton" 
-            disabled={message === ''} 
-            onClick={handleSendMessage}>Send</button>
-        </form>
-    )
+
+    handleChange = (e) => {
+        const { name, setMessage } = this.props;
+        setMessage({ name: name, value: e.target.value })
+    }
+
+    render() {
+        const { message } = this.props;
+        return (
+            <div className="form">
+                <input
+                    className="input"
+                    type="text"
+                    placeholder="Type a message..."
+                    value={message}
+                    onChange={this.handleChange}
+                />
+                <button
+                    className="sendButton"
+                    disabled={message === ''}
+                    onClick={this.handleSendMessage}>Send</button>
+            </div>
+        )
+    }
 }
 
 export default Input;

@@ -1,49 +1,59 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import '../../scss/style.scss';
 
-const ReferalLink = ({ friendName, room, setInviteStatus, setFriendName }) => {
+class ReferalLink extends PureComponent {
 
-    const location = window.location.host;
+    constructor(props) {
+        super(props);
+        this.state = {
+            location: window.location.host
+        }
+    }
 
-    const copy = () => {
+    copy = () => {
         var copyText = document.getElementById("link");
         copyText.select();
         document.execCommand("copy");
     }
 
-    const backButton = () => {
-        setInviteStatus('1');
-        setFriendName('');
+    backButton = () => {
+        const { onChange } = this.props;
+        onChange({name:'inviteStatus', value:'1'});
+        onChange({name:'friendName', value:''})
     }
 
-    const handleCopy = (e) => {
+    handleCopy = (e) => {
         e.preventDefault();
-        copy();
+        this.copy();
     }
 
-    return (
-        <div>
-            <p>Give this link to your friend</p>
-            <form className="formLink">
-                <div>
-                    <input
-                        className="linkInput"
-                        id="link"
-                        type="text"
-                        value={`${location}/chat?name=${friendName}&room=${room}`}
-                    />
-                </div>
-                <button
-                    className="copyButton"
-                    onClick={handleCopy}
-                >
-                    COPY
+    render() {
+        const { friendName, room } = this.props;
+        const { location } = this.state;
+        return (
+            <div>
+                <p>Give this link to your friend</p>
+                <form className="formLink">
+                    <div>
+                        <input
+                            className="linkInput"
+                            id="link"
+                            type="text"
+                            value={`${location}/chat?name=${friendName}&room=${room}`}
+                        />
+                    </div>
+                    <button
+                        className="copyButton"
+                        onClick={this.handleCopy}
+                    >
+                        COPY
                 </button>
-            </form>
-            <button className="button" onClick={backButton}>Back</button>
-        </div>
-    )
-};
+                </form>
+                <button className="button" onClick={this.backButton}>Back</button>
+            </div>
+        )
+    }
+}
 
 export default ReferalLink;

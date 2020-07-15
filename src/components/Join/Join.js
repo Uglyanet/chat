@@ -32,7 +32,7 @@ const Join = () => {
 
     const handleGeneratePrivateRoom = () => {
         generatePassword();
-        setSecret(true);
+        setSecret({name:'secret', value:true});
     }
 
 

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { PureComponent } from "react";
 import queryString from 'query-string';
 import io from "socket.io-client";
 
@@ -13,70 +13,103 @@ import { SERVER_ENDPOINT } from '../../constants/other'
 
 let socket;
 
-const Chat = ({ location }) => {
-  const [name, setName] = useState('');
-  const [room, setRoom] = useState('');
-  const [users, setUsers] = useState('');
-  const [message, setMessage] = useState('');
-  const [messages, setMessages] = useState([]);
+class Chat extends PureComponent {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: '',
+      room: '',
+      users: '',
+      message: '',
+      messages: []
+    }
+  }
 
-  useEffect(() => {
-    const { name, room } = queryString.parse(location.search);
-
+  componentDidMount() {
+    const { messages } = this.state;
+    const { location } = this.props;
     socket = io(SERVER_ENDPOINT);
+    socket.on('message', (message) => {
+      this.setState({ messages: [...messages, message] })
+    });
 
-    setRoom(room);
-    setName(name);
-
+    socket.on('roomData', ({ users }) => {
+      this.setState({ users: users })
+    })
+    const { name, room } = queryString.parse(location.search);
+    this.setState({ room: room })
+    this.setState({ name: name })
     socket.emit('join', { name, room }, (error) => {
       if (error) {
         alert(error);
       }
     });
-  }, [location.search]);
+  }
 
-  useEffect(() => {
-    socket.on('message', (message) => {
-      setMessages([...messages, message]);
-    });
+  componentDidUpdate(prevProps, prevState) {
+    const { message, messages } = this.state;
+    const { location } = this.props;
+    if (prevState.message !== message) {
+      socket.on('message', (message) => {
+        this.setState({ messages: [...messages, message] })
+      });
 
-    socket.on('roomData', ({ users }) => {
-      setUsers(users);
-    })
-
-    return () => {
-      socket.emit('disconnect');
-
-      socket.off();
+      socket.on('roomData', ({ users }) => {
+        this.setState({ users: users })
+      })
     }
-  }, [messages])
+    if (prevProps.location.search !== location.search) {
+      const { name, room } = queryString.parse(location.search);
 
-  const soundClick = () => {
-    var audio = new Audio();
+      socket = io(SERVER_ENDPOINT);
+      this.setState({ room: room })
+      this.setState({ name: name })
+      socket.emit('join', { name, room }, (error) => {
+        if (error) {
+          alert(error);
+        }
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    socket.emit('disconnect');
+    socket.off();
+  }
+
+  handleChange = ({ name, value }) => {
+    this.setState({ [name]: value })
+  }
+
+  soundClick = () => {
+    const audio = new Audio();
     audio.src = soundFile;
     audio.autoplay = true;
   }
 
-  const sendMessage = (event) => {
-    event.preventDefault();
-    soundClick();
+  sendMessage = () => {
+    const { message } = this.state;
+    this.soundClick();
 
     if (message) {
-      socket.emit('sendMessage', message, () => setMessage(''));
+      socket.emit('sendMessage', message, () => this.handleChange({ name: 'message', value: '' }));
     }
   }
 
-  return (
-    <div className="outerContainer">
-      <div className="container">
-        <InfoBar room={room} />
-        <Messages messages={messages} name={name} />
-        <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
+  render() {
+    const { room, message, name, messages, users } = this.state
+    return (
+      <div className="outerContainer">
+        <div className="container">
+          <InfoBar room={room} />
+          <Messages messages={messages} name={name} />
+          <Input message={message} setMessage={this.handleChange} name='message' sendMessage={this.sendMessage} />
+        </div>
+        <TextContainer users={users} room={room} />
       </div>
-      <TextContainer users={users} room={room} />
-    </div>
-  );
+    )
+  }
 }
 
 export default Chat;

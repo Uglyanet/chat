@@ -1,38 +1,41 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 
 import '../../scss/style.scss';
 
-const InviteForm = ({ friendName, setFriendName, setInviteStatus }) => {
-
-    const handleSetFriendName = (e) => {
-        setFriendName(e.target.value)
+class InviteForm extends PureComponent {
+    handleSetFriendName = (e) => {
+        const { onChange } = this.props;
+        onChange({ name: 'friendName', value: e.target.value })
     }
-    
-    const handleButtonClick = (e) => {
+
+    handleButtonClick = (e) => {
+        const { friendName, onChange } = this.props;
         if (friendName) {
-            setInviteStatus('3')
+            onChange({ name: 'inviteStatus', value: '3' })
         } else {
             e.preventDefault()
         }
     }
-
-    return (
-        <div>
+    
+    render() {
+        return (
             <div>
-                <input
-                    placeholder="Friend Name"
-                    className="friendInput"
-                    type="text"
-                    onChange={handleSetFriendName} />
-            </div>
-            <button
-                className="button"
-                onClick={handleButtonClick}
-            >
-                Oh nice
+                <div>
+                    <input
+                        placeholder="Friend Name"
+                        className="friendInput"
+                        type="text"
+                        onChange={this.handleSetFriendName} />
+                </div>
+                <button
+                    className="button"
+                    onClick={this.handleButtonClick}
+                >
+                    Oh nice
             </button>
-        </div>
-    )
-};
+            </div>
+        )
+    }
+}
 
 export default InviteForm;
