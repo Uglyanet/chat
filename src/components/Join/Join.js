@@ -34,7 +34,7 @@ const Join = () => {
         generatePassword();
         setSecret({name:'secret', value:true});
     }
-
+    
 
     return (
         <div className="joinOuterContainer">
