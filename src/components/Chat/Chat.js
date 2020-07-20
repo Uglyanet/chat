@@ -98,7 +98,7 @@ class Chat extends PureComponent {
   }
 
   render() {
-    const { room, message, name, messages, users } = this.state
+    const { room, message, name, messages, users } = this.state;
     return (
       <div className="outerContainer">
         <div className="container">

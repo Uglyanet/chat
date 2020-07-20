@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import InviteForm from '../InviteForm/InviteForm';
 import ReferalLink from '../ReferalLink/ReferalLink';
+import { withTranslation } from 'react-i18next'
 
 import onlineIcon from '../../icons/onlineIcon.png';
 
@@ -26,7 +27,7 @@ class TextContainer extends PureComponent {
 
 
   render() {
-    const { users, room } = this.props;
+    const { users, room, t } = this.props;
     const { friendName, inviteStatus } = this.state
     return (
       <div className="textContainer">
@@ -50,7 +51,16 @@ class TextContainer extends PureComponent {
             : null
         }
         <div>
-          {inviteStatus === '1' && <button className="button" name='inviteStatus' value='2' onClick={this.handleChangeInviteStatus}>Invite friend to chat</button>}
+          {inviteStatus === '1'
+            && <button
+              className="button"
+              name='inviteStatus'
+              value='2'
+              onClick={this.handleChangeInviteStatus}
+            >
+              {t('invite_friend_to_chat')}
+            </button>
+          }
           {inviteStatus === '2' &&
             <InviteForm friendName={friendName}
               onChange={this.handleChange}
@@ -65,4 +75,4 @@ class TextContainer extends PureComponent {
     )
   }
 }
-export default TextContainer;
+export default withTranslation()(TextContainer);

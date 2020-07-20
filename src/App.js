@@ -17,14 +17,18 @@ class App extends PureComponent {
         this.setState({ [name]: value })
     }
 
+    generateLink=(path)=>{
+        return `/:lng(ru|ua|en)?${path}`;
+    }
+
     render() {
         const { secret } = this.state;
         return (
             <Context.Provider value={{ secret, setSecret: this.handleChange }}>
                 <Router>
                     <Switch>
-                        <Route path="/" exact component={Join} />
-                        <Route path="/chat" component={Chat} />
+                        <Route path={this.generateLink('/')} exact component={Join} />
+                        <Route path={this.generateLink('/chat')} component={Chat} />
                         <Route component={NotFound} />
                     </Switch>
                 </Router>
