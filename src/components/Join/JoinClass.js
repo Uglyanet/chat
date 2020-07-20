@@ -35,11 +35,11 @@ class JoinClass extends PureComponent {
         this.generatePassword();
         this.setState({ name: 'secret', value: true });
     }
-    setName = (event) => {
-        this.setState({name : event.target.value})
+    setName = (e) => {
+        this.setState({name : e.target.value})
     }
-    setRoom = (event) => {
-        this.setState({room : event.target.value})
+    setRoom = (e) => {
+        this.setState({room : e.target.value})
     }
 
     render() {
@@ -49,7 +49,7 @@ class JoinClass extends PureComponent {
                     <img src={golubfront} onClick={this.soundMain} alt="pig" />
                     <h1 className="heading">Join</h1>
                     <div>
-                        <input placeholder="Name" className="joinInput" type="text" onChange={(event) => this.setName(event)} />
+                        <input placeholder="Name" className="joinInput" type="text" onChange={(e) => this.setName(e)} />
                     </div>
                     <div>
                         <input placeholder="Room" className="joinInput mt-20" type={this.secret ? "password" : "text"} value={this.room} onChange={(event) => this.setRoom(event)} />

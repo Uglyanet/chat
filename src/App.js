@@ -4,7 +4,6 @@ import Join from './components/Join/Join';
 import Chat from './components/Chat/Chat';
 import NotFound from './components/NotFound/NotFound';
 import Context from './Context';
-import JoinClass from './components/Join/JoinClass';
 
 class App extends PureComponent {
     constructor(props) {
@@ -24,7 +23,7 @@ class App extends PureComponent {
             <Context.Provider value={{ secret, setSecret: this.handleChange }}>
                 <Router>
                     <Switch>
-                        <Route path="/" exact component={JoinClass} />
+                        <Route path="/" exact component={Join} />
                         <Route path="/chat" component={Chat} />
                         <Route component={NotFound} />
                     </Switch>
