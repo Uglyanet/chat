@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Join from './components/Join/Join';
+import Join from './components/Join/Join'
 import Chat from './components/Chat/Chat';
 import NotFound from './components/NotFound/NotFound';
 import Context from './Context';
@@ -27,7 +27,7 @@ class App extends PureComponent {
             <Context.Provider value={{ secret, setSecret: this.handleChange }}>
                 <Router>
                     <Switch>
-                        <Route path={this.generateLink('/')} exact component={Join} />
+                        <Route path={this.generateLink('/')} exact component={() => <Join secret={secret} setSecret={this.handleChange} />} />
                         <Route path={this.generateLink('/chat')} component={Chat} />
                         <Route component={NotFound} />
                     </Switch>
