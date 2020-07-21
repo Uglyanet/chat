@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { withTranslation } from 'react-i18next'
+
 
 import '../../scss/style.scss';
 
@@ -13,23 +15,23 @@ class Input extends PureComponent {
     }
 
     render() {
-        const { message } = this.props;
+        const { message,t} = this.props;
         return (
             <div className="form">
                 <input
                     className="input"
                     type="text"
-                    placeholder="Type a message..."
+                    placeholder={t('input_placeholder_type_message')}
                     value={message}
                     onChange={this.handleChange}
                 />
                 <button
                     className="sendButton"
                     disabled={message === ''}
-                    onClick={this.handleSendMessage}>Send</button>
+                    onClick={this.handleSendMessage}>{t('input_send_button')}</button>
             </div>
         )
     }
 }
 
-export default Input;
+export default withTranslation()(Input);

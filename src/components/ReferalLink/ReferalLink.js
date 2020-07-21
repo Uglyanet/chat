@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { withTranslation } from 'react-i18next'
 
 import '../../scss/style.scss';
 
@@ -19,8 +20,8 @@ class ReferalLink extends PureComponent {
 
     backButton = () => {
         const { onChange } = this.props;
-        onChange({name:'inviteStatus', value:'1'});
-        onChange({name:'friendName', value:''})
+        onChange({ name: 'inviteStatus', value: '1' });
+        onChange({ name: 'friendName', value: '' })
     }
 
     handleCopy = (e) => {
@@ -29,11 +30,11 @@ class ReferalLink extends PureComponent {
     }
 
     render() {
-        const { friendName, room } = this.props;
+        const { friendName, room, t } = this.props;
         const { location } = this.state;
         return (
             <div>
-                <p>Give this link to your friend</p>
+                <p>{t('referal_link_give_this_link_to_your_friend')}</p>
                 <form className="formLink">
                     <div>
                         <input
@@ -47,13 +48,13 @@ class ReferalLink extends PureComponent {
                         className="copyButton"
                         onClick={this.handleCopy}
                     >
-                        COPY
-                </button>
+                        {t('referal_link_button_copy')}
+                    </button>
                 </form>
-                <button className="button" onClick={this.backButton}>Back</button>
+                <button className="button" onClick={this.backButton}>{t('referal_link_button_back')}</button>
             </div>
         )
     }
 }
 
-export default ReferalLink;
+export default withTranslation()(ReferalLink);

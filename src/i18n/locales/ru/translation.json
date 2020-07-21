@@ -1,3 +1,23 @@
 {
-    "invite_friend_to_chat": "Пригласить друга в чат"
+    "invite_friend_to_chat": "Пригласить друга в чат",
+    "invite_input_placeholder" : "Имя Друга",
+    "invite_button" : "Круто",
+    "textcontainer_h1_people_currently_chatting": "Пользователи в чате:",
+    "input_placeholder_type_message" : "Написать сообщение...",
+    "input_send_button" : "Отправить",
+    "join_main_string" : "Присоединиться",
+    "join_placeholder_name": "Имя",
+    "join_placeholder_room_key": "Ключ",
+    "join_button_sign_in" : "Войти",
+    "join_button_create_private_key" : "Создать Приватный Ключ",
+    "infobar_img_secret_pigeon_chat" : "Секретный голубиный чат",
+    "referal_link_give_this_link_to_your_friend": "Передай другу эту ссылку",
+    "referal_link_button_copy": "СКОПИРОВАТЬ",
+    "referal_link_button_back": "НАЗАД"
+
+
+
+
+
+
 }

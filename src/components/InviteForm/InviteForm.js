@@ -1,4 +1,6 @@
 import React, { PureComponent } from 'react';
+import { withTranslation } from 'react-i18next'
+
 
 import '../../scss/style.scss';
 
@@ -16,13 +18,14 @@ class InviteForm extends PureComponent {
             e.preventDefault()
         }
     }
-    
+
     render() {
+        const { t } = this.props;
         return (
             <div>
                 <div>
                     <input
-                        placeholder="Friend Name"
+                        placeholder={t('invite_input_placeholder')}
                         className="friendInput"
                         type="text"
                         onChange={this.handleSetFriendName} />
@@ -31,11 +34,11 @@ class InviteForm extends PureComponent {
                     className="button"
                     onClick={this.handleButtonClick}
                 >
-                    Oh nice
-            </button>
+                    {t('invite_button')}
+                </button>
             </div>
         )
     }
 }
 
-export default InviteForm;
+export default withTranslation()(InviteForm);
