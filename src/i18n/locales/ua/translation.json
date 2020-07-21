@@ -1,3 +1,6 @@
 {
-    "invite_friend_to_chat":"Запросити друга до чату"
+    "invite_friend_to_chat":"Запросити друга до чату",
+    "WELCOME": "{{user}}, впав в кімнату <3",
+    "JOINED": "{{user}} зашов в кімнату",
+    "LEFT": "{{user}} вішовз кімнати"
 }

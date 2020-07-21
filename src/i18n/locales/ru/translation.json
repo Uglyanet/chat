@@ -1,3 +1,6 @@
 {
-    "invite_friend_to_chat": "Пригласить друга в чат"
+    "invite_friend_to_chat": "Пригласить друга в чат",
+    "WELCOME": "{{user}}, упал в комнату <3",
+    "JOINED": "{{user}} вошёл в комнату",
+    "LEFT": "{{user}} покинул комнату"
 }

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import '../../../scss/style.scss';
+import { withTranslation } from 'react-i18next';
 import ReactEmoji from 'react-emoji';
 
 class Message extends PureComponent {
@@ -34,9 +35,52 @@ class Message extends PureComponent {
     this.setState({ time: now });
   }
 
+  translateAdminMessage=()=>{
+    const {t, message} = this.props;
+    const { type, text } = message;
+    if(type==='WELCOME'){
+      const userName = text.replace(', welcome to room .','')
+      return t('WELCOME',{user:userName } )
+    }
+    if(type==='JOINED'){
+      const userName = text.replace(' has joined!','')
+      return t('JOINED',{user:userName } )
+    }
+    if(type==='LEFT'){
+      const userName = text.replace(' has left!','')
+      return t('LEFT',{user:userName } )
+    }
+  }
+
+  getAnotherMessage = () => {
+    const { message } = this.props
+    const { time } = this.state;
+    const { user, text } = message;
+    if (user === 'Admin') {
+      return (
+        <div className="messageContainer justifyStart">
+          <div className="messageBox backgroundLight">
+            <p className="user">{user}</p>
+            <p className="messageText colorDark">{ReactEmoji.emojify(this.translateAdminMessage())}</p>
+          </div>
+          <p className="sentText pl-10 ">{time}</p>
+        </div>
+      )
+    }
+    return (
+      <div className="messageContainer justifyStart">
+        <div className="messageBox backgroundLight">
+          <p className="user">{message.user}</p>
+          <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
+        </div>
+        <p className="sentText pl-10 ">{time}</p>
+      </div>
+    )
+  }
+
   render() {
     const { isSentByCurrentUser, trimmedName, time } = this.state;
-    const { text, user } = this.props.message;
+    const { text } = this.props.message;
 
     return (
       isSentByCurrentUser
@@ -50,16 +94,12 @@ class Message extends PureComponent {
           </div>
         )
         : (
-          <div className="messageContainer justifyStart">
-            <div className="messageBox backgroundLight">
-              <p className="user">{user}</p>
-              <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
-            </div>
-            <p className="sentText pl-10 ">{time}</p>
-          </div>
+
+          this.getAnotherMessage()
+
         )
     )
   }
 }
 
-export default Message;
+export default withTranslation()(Message);
