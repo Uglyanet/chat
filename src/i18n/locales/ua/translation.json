@@ -2,5 +2,19 @@
     "invite_friend_to_chat":"Запросити друга до чату",
     "WELCOME": "{{user}}, впав в кімнату <3",
     "JOINED": "{{user}} зашов в кімнату",
-    "LEFT": "{{user}} вішовз кімнати"
+    "LEFT": "{{user}} вішовз кімнати",
+    "invite_input_placeholder" : "Ім'я Друга",
+    "invite_button" : "Круто",
+    "textcontainer_h1_people_currently_chatting": "Користувачі в чаті:",
+    "input_placeholder_type_message" : "Написати повідомлення...",
+    "input_send_button" : "Відправити",
+    "join_main_string" : "Приєднатися",
+    "join_placeholder_name": "Ім'я",
+    "join_placeholder_room_key": "Ключ",
+    "join_button_sign_in" : "Увійти",
+    "join_button_create_private_key" : "Створити Приватний Ключ",
+    "infobar_img_secret_pigeon_chat" : "Секретний голубиний чат",
+    "referal_link_give_this_link_to_your_friend": "Передай другу цю силку",
+    "referal_link_button_copy": "СКОПІЮВАТИ",
+    "referal_link_button_back": "НАЗАД"
 }

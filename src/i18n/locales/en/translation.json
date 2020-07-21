@@ -2,5 +2,19 @@
     "invite_friend_to_chat": "Invite friend to chat",
     "WELCOME": "{{user}}, welcome to room <3",
     "JOINED": "{{user}} has joined!",
-    "LEFT": "{{user}} has left!"
+    "LEFT": "{{user}} has left!",
+    "invite_input_placeholder": "Friend Name",
+    "invite_button": "Oh Nice",
+    "textcontainer_h1_people_currently_chatting": "People currently chatting:",
+    "input_placeholder_type_message": "Type a message...",
+    "input_send_button": "Send",
+    "join_main_string": "Join",
+    "join_placeholder_name": "Name",
+    "join_placeholder_room_key": "Room Key",
+    "join_button_sign_in": "Sign In",
+    "join_button_create_private_key": "Create Private Key",
+    "infobar_img_secret_pigeon_chat": "Secret pigeon chat",
+    "referal_link_give_this_link_to_your_friend": "Give this link to your friend",
+    "referal_link_button_copy": "COPY",
+    "referal_link_button_back": "BACK"
 }

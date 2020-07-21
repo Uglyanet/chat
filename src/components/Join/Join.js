@@ -5,6 +5,7 @@ import golubfront from '../../icons/golubfront.gif';
 import securityIcon from '../../icons/security.png';
 import { charset } from '../../constants/other'
 import '../../scss/style.scss';
+import { withTranslation } from 'react-i18next'
 
 class Join extends PureComponent {
     state = {
@@ -41,29 +42,30 @@ class Join extends PureComponent {
     }
 
     render() {
-        const {secret} = this.props;
-        const {name, room}= this.state;
+
+        const { secret, t } = this.props;
+        const { name, room } = this.state;
         return (
             <div className="joinOuterContainer">
                 <div className="joinInnerContainer">
                     <img src={golubfront} onClick={this.soundMain} alt="pig" />
-                    <h1 className="heading">Join</h1>
+                    <h1 className="heading">{t('join_main_string')}</h1>
                     <div>
-                        <input placeholder="Name" className="joinInput" type="text" onChange={this.setName} />
+                        <input placeholder={t('join_placeholder_name')} className="joinInput" type="text" onChange={this.setName} />
                     </div>
                     <div>
-                        <input placeholder="Room" className="joinInput mt-20" type={secret ? "password" : "text"} value={room} onChange={(e) => this.setRoom(e)} />
+                        <input placeholder={t('join_placeholder_room_key')} className="joinInput mt-20" type={secret ? "password" : "text"} value={room} onChange={(e) => this.setRoom(e)} />
                     </div>
                     <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
-                        <button className="button mt-20" type="submit">Sign In</button>
+                        <button className="button mt-20" type="submit">{t('join_button_sign_in')}</button>
                     </Link>
                     <button
                         className="button mt-20"
                         type="submit"
                         onClick={this.handleGeneratePrivateRoom}
                     >
-                        Create private key
-                    <img
+                        {t('join_button_create_private_key')}
+                        <img
                             className="securityIcon"
                             src={securityIcon}
                             alt="security icon"
@@ -75,4 +77,4 @@ class Join extends PureComponent {
     }
 }
 
-export default Join;
+export default withTranslation()(Join);
