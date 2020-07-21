@@ -35,7 +35,7 @@ class TextContainer extends PureComponent {
           users
             ? (
               <div>
-                <h1>People currently chatting:</h1>
+                <h1>{t('textcontainer_h1_people_currently_chatting')}</h1>
                 <div className="activeContainer">
                   <h2>
                     {users.map(({ name }) => (
