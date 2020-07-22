@@ -9,7 +9,6 @@ class Message extends PureComponent {
     super(props);
     const { user } = this.props.message;
     this.state = {
-      time: '',
       isSentByCurrentUser: '',
       trimmedName: user.trim().toLowerCase()
     }
@@ -29,10 +28,7 @@ class Message extends PureComponent {
     if (name.trim().toLowerCase() === trimmedName) {
       this.setState({ isSentByCurrentUser: true })
     }
-    this.setState({ time: '' });
-    const date = new Date();
-    const now = `${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`;
-    this.setState({ time: now });
+    
   }
 
   translateAdminMessage=()=>{
@@ -54,8 +50,7 @@ class Message extends PureComponent {
 
   getAnotherMessage = () => {
     const { message } = this.props
-    const { time } = this.state;
-    const { user, text } = message;
+    const { user, text, time } = message;
     if (user === 'Admin') {
       return (
         <div className="messageContainer justifyStart">
@@ -79,8 +74,8 @@ class Message extends PureComponent {
   }
 
   render() {
-    const { isSentByCurrentUser, trimmedName, time } = this.state;
-    const { text } = this.props.message;
+    const { isSentByCurrentUser, trimmedName } = this.state;
+    const { text, time } = this.props.message;
 
     return (
       isSentByCurrentUser

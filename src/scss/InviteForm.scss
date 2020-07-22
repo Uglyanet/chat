@@ -2,21 +2,24 @@
 @import 'mixins';
 
 .button {
-    @include button_main(100%, $mainBlue);
-    margin-top: 10px;
-    border-radius: 5px;
-    -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
-    transition: box-shadow 0.5s, background-color 0.5s, transform 0.5s;
-    &:hover{
-      background-color: darken($mainBlue, 20%);
-    }
-  }
+  @include button_main(100%, $mainBlue);
+  margin-top        : 10px;
+  border-radius     : 5px;
+  -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
+  transition        : box-shadow 0.5s, background-color 0.5s, transform 0.5s;
 
-  .friendInput {
-    border-radius: 5px;
-    padding: 15px 20px;
-    width: 100%;
-    &:focus{
-      outline: 3px solid $mainBlue;
-    }
+  &:hover {
+    background-color: darken($mainBlue, 20%);
   }
+}
+
+.friendInput {
+  border-radius: 5px;
+  padding      : 15px 20px;
+  font-size    : 16px;
+  width        : 100%;
+
+  &:focus {
+    outline: 3px solid $mainBlue;
+  }
+}

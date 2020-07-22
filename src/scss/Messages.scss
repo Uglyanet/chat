@@ -1,5 +1,12 @@
 .messages {
-  padding: 0% 0;
-  overflow: auto;
-  flex: auto;
+  padding           : 0% 0;
+  overflow          : auto;
+  flex              : auto;
+  -ms-overflow-style: none;
+  white-space       : nowrap;
+  overflow-x        : scroll;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }

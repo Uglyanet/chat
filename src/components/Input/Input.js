@@ -5,8 +5,11 @@ import { withTranslation } from 'react-i18next'
 import '../../scss/style.scss';
 
 class Input extends PureComponent {
-    handleSendMessage = () => {
-        this.props.sendMessage()
+    handleSendMessage = (e) => {
+        const { sendMessage, setMessage } = this.props;
+        e.preventDefault();
+        sendMessage();
+        setMessage({ name: 'message', value: '' })
     }
 
     handleChange = (e) => {
@@ -15,9 +18,9 @@ class Input extends PureComponent {
     }
 
     render() {
-        const { message,t} = this.props;
+        const { message, t } = this.props;
         return (
-            <div className="form">
+            <form className="form" onSubmit={this.handleSendMessage}>
                 <input
                     className="input"
                     type="text"
@@ -28,8 +31,11 @@ class Input extends PureComponent {
                 <button
                     className="sendButton"
                     disabled={message === ''}
-                    onClick={this.handleSendMessage}>{t('input_send_button')}</button>
-            </div>
+                    type='submit'
+                >
+                    {t('input_send_button')}
+                </button>
+            </form>
         )
     }
 }

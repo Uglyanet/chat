@@ -29,8 +29,8 @@ class Join extends PureComponent {
     }
 
     handleGeneratePrivateRoom = () => {
-        this.generatePassword();
         this.props.setSecret({ name: 'secret', value: true });
+        this.generatePassword();
     }
 
     setName = (e) => {
@@ -50,13 +50,18 @@ class Join extends PureComponent {
                 <div className="joinInnerContainer">
                     <img src={golubfront} onClick={this.soundMain} alt="pig" />
                     <h1 className="heading">{t('join_main_string')}</h1>
-                    <div>
-                        <input placeholder={t('join_placeholder_name')} className="joinInput" type="text" onChange={this.setName} />
-                    </div>
-                    <div>
-                        <input placeholder={t('join_placeholder_room_key')} className="joinInput mt-20" type={secret ? "password" : "text"} value={room} onChange={(e) => this.setRoom(e)} />
-                    </div>
-                    <Link onClick={e => (!name || !room) ? e.preventDefault() : null} to={`/chat?name=${name}&room=${room}`}>
+                    <input placeholder={t('join_placeholder_name')} className="joinInput" type="text" onChange={this.setName} />
+                    <form autoComplete="off">
+                        <input
+                            placeholder={t('join_placeholder_room_key')}
+                            className="joinInput mt-20"
+                            type={secret ? "password" : "text"}
+                            value={room}
+                            onChange={this.setRoom}
+                            autoComplete="off"
+                        />
+                    </form>
+                    <Link onClick={e => (!name || !room) ? e.preventDefault() : e.stopPropagation()} to={`/chat?name=${name}&room=${room}`}>
                         <button className="button mt-20" type="submit">{t('join_button_sign_in')}</button>
                     </Link>
                     <button

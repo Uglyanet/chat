@@ -52,7 +52,13 @@ class Chat extends PureComponent {
     const { location } = this.props;
     if (prevState.message !== message) {
       socket.on('message', (message) => {
-        this.setState({ messages: [...messages, message] })
+        const date = new Date();
+        const time = `${date.getHours()}:${date.getMinutes() < 10 ? `0${date.getMinutes()}` : date.getMinutes()}`;
+        const newMessage = {
+          ...message,
+          time
+        }
+        this.setState({ messages: [...messages, newMessage] })
       });
 
       socket.on('roomData', ({ users }) => {

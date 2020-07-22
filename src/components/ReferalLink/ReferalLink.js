@@ -36,14 +36,12 @@ class ReferalLink extends PureComponent {
             <div>
                 <p>{t('referal_link_give_this_link_to_your_friend')}</p>
                 <form className="formLink">
-                    <div>
-                        <input
-                            className="linkInput"
-                            id="link"
-                            type="text"
-                            value={`${location}/chat?name=${friendName}&room=${room}`}
-                        />
-                    </div>
+                    <input
+                        className="linkInput"
+                        id="link"
+                        type="text"
+                        value={`${location}/chat?name=${friendName}&room=${room}`}
+                    />
                     <button
                         className="copyButton"
                         onClick={this.handleCopy}

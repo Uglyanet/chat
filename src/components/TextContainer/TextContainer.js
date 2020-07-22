@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import InviteForm from '../InviteForm/InviteForm';
 import ReferalLink from '../ReferalLink/ReferalLink';
 import { withTranslation } from 'react-i18next'
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 import onlineIcon from '../../icons/onlineIcon.png';
 
@@ -30,23 +31,23 @@ class TextContainer extends PureComponent {
     const { users, room, t } = this.props;
     const { friendName, inviteStatus } = this.state
     return (
-      <div className="textContainer">
+      <div className="textContainer" id='textContainer'>
         {
           users
             ? (
-              <div>
+              <>
                 <h1>{t('textcontainer_h1_people_currently_chatting')}</h1>
-                <div className="activeContainer">
-                  <h2>
-                    {users.map(({ name }) => (
-                      <div key={name} className="activeItem">
+                <ScrollToBottom mode='top' className="activeContainer">
+                  {users.map(({ name }) => (
+                    <div key={name} className="activeItem">
+                      <h2>
                         {name}
-                        <img alt="Online Icon" src={onlineIcon} />
-                      </div>
-                    ))}
-                  </h2>
-                </div>
-              </div>
+                      </h2>
+                      <img alt="Online Icon" src={onlineIcon} />
+                    </div>
+                  ))}
+                </ScrollToBottom>
+              </>
             )
             : null
         }

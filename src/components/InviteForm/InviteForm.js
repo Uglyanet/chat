@@ -12,6 +12,8 @@ class InviteForm extends PureComponent {
 
     handleButtonClick = (e) => {
         const { friendName, onChange } = this.props;
+        e.preventDefault();
+        e.stopPropagation();
         if (friendName) {
             onChange({ name: 'inviteStatus', value: '3' })
         } else {
@@ -22,21 +24,20 @@ class InviteForm extends PureComponent {
     render() {
         const { t } = this.props;
         return (
-            <div>
-                <div>
-                    <input
-                        placeholder={t('invite_input_placeholder')}
-                        className="friendInput"
-                        type="text"
-                        onChange={this.handleSetFriendName} />
-                </div>
+            <form
+                onSubmit={this.handleButtonClick}>
+                <input
+                    placeholder={t('invite_input_placeholder')}
+                    className="friendInput"
+                    type="text"
+                    onChange={this.handleSetFriendName} />
                 <button
                     className="button"
-                    onClick={this.handleButtonClick}
+                    type='submit'
                 >
                     {t('invite_button')}
                 </button>
-            </div>
+            </form>
         )
     }
 }

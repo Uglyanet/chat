@@ -1,78 +1,93 @@
 .textContainer {
-    display: flex;
+  display        : flex;
+  flex-direction : column;
+  margin-left    : 100px;
+  color          : white;
+  height         : 60%;
+  justify-content: space-between;
+}
+
+.activeContainer {
+  display           : flex;
+  margin-bottom     : 10%;
+  height            : 100%;
+  -ms-overflow-style: none;
+  white-space       : nowrap;
+  overflow-x        : scroll;
+
+  button {
+    background-color: rgba($color: white, $alpha: 0.5);
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.activeItem {
+  display    : flex;
+  align-items: center;
+}
+
+.activeContainer img {
+  padding-left: 10px;
+}
+
+.friendInput {
+  color        : black;
+  font-family  : "Roboto", sans-serif;
+  font-size    : larger;
+  border       : none;
+  border-radius: 0;
+  padding      : 5%;
+  width        : 80%;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.form {
+  display: flex;
+}
+
+.copyButton {
+  @include button_main(20%, $mainBlue);
+  border-radius     : 0px 0px 5px 0px;
+  -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
+  transition        : box-shadow 0.5s, background-color 0.5s, transform 0.5s;
+
+  &:hover {
+    background-color: darken($mainBlue, 20%);
+  }
+}
+
+.input {
+  border       : none;
+  border-radius: 0;
+  padding      : 5%;
+  width        : 80%;
+  font-size    : 16px;
+  border-radius: 0px 0px 0px 5px;
+}
+
+.textContainer h1 {
+  margin-bottom: 0px;
+}
+
+.button {
+  @include button_main(100%, $mainBlue);
+  border-radius     : 5px;
+  -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
+  transition        : box-shadow 0.5s, background-color 0.5s, transform 0.5s;
+
+  &:hover {
+    background-color: darken($mainBlue, 20%);
+  }
+}
+
+@media (min-width: 320px) and (max-width: 1200px) {
+  .textContainer {
+    display       : flex;
     flex-direction: column;
-    margin-left: 100px;
-    color: white;
-    height: 60%;
-    justify-content: space-between;
+    margin-left   : 0%;
+    height        : 100vh;
   }
-  
-  .activeContainer {
-    display: flex;
-    align-items: center;
-    margin-bottom: 10%;
-  }
-  
-  .activeItem {
-    display: flex;
-    align-items: center;
-  }
-  
-  .activeContainer img {
-    padding-left: 10px;
-  }
-
-  .friendInput{
-    color:black;
-    font-family: "Roboto", sans-serif;
-    font-size: larger;
-    border: none;
-    border-radius: 0;
-    padding: 5%;
-    width: 80%;
-    border-radius: 5px 5px 0px 0px;
-  }
-
-  .form {
-    display: flex;
-  }
-
-  .copyButton {
-    @include button_main(20%, $mainBlue);
-    border-radius: 0px 0px 5px 0px;
-    -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
-    transition: box-shadow 0.5s, background-color 0.5s, transform 0.5s;
-    &:hover {
-      background-color: darken($mainBlue, 20%);
-    }
-  }
-  
-  .input {
-    border: none;
-    border-radius: 0;
-    padding: 5%;
-    width: 80%;
-    font-size: 1.2em;
-    border-radius: 0px 0px 0px 5px;
-  }
-  
-  .textContainer h1 {
-    margin-bottom: 0px;
-  }
-  .button {
-    @include button_main(100%, $mainBlue);
-    border-radius: 5px;
-    -webkit-transition: box-shadow 0.5s, background-color 0.5s, -webkit-transform 0.5s;
-    transition: box-shadow 0.5s, background-color 0.5s, transform 0.5s;
-    &:hover{
-      background-color: darken($mainBlue, 20%);
-    }
-  }
-  
-  @media (min-width: 320px) and (max-width: 1200px) {
-    .textContainer {
-      display: flex;
-      flex-direction: column;
-      margin-left: 0%;
-    }
-  }
+}
