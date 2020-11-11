@@ -8,7 +8,7 @@ import Context from './Context';
 class App extends PureComponent {
     constructor(props) {
         super(props);
-        this.state = {
+        this.state= {
             secret: false
         }
     }

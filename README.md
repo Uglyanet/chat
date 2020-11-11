@@ -34,3 +34,8 @@ Your app is ready to be deployed!
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 
+### DOCKER BUILDING
+
+docker build -t pigeon-client
+docker run -d -p 3000:80 pigeon-client       CMD ["nginx", "-g", "daemon off;"]
+
